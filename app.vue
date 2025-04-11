@@ -48,6 +48,18 @@
         <div class="container">
           <h2 class="heading text-center">关于我们</h2>
           <p class="subheading text-center">我们是谁，我们做什么</p>
+
+          <div class="mt-12 mb-12 grid md:grid-cols-1 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md  hover:shadow-lg transition">
+              
+              <h4 class="text-xl font-bold mb-2"><i class="fas fa-lightbulb text-4xl text-blue-600 mb-4"></i> 组织成立背景</h4>
+              <!-- 设置字体大小 -->
+              <p class="text-gray-600 text-lg">开发者提升技术和能力的最佳方向，便是 <span class="text-blue-600">学习技术->做上架产品-用户使用和反馈-开发者迭代和优化</span> ，这一过程，青蓝团队采用<span class="text-blue-600">老手带新手</span>的方式，让不同背景的成员都能加入其中，如果你是老手，你可以通过携带新手的方式来开发你的独立应用，青蓝逐码提供全流程支持。如果你是新手，你可以在开发真实应用的过程中打磨和锻炼自己，最后提升自己技术的同时会得到一个<span class="text-blue-600">落地的、真实的作品</span>。  贯穿整个开发过程，<span class="text-blue-700">你还会得到技术博客、开源项目、线上、线下的流量曝光，你还能得到上架应用带来的流量收益！</span> 你还在等什么呢 !  </p>
+            </div>
+          </div>
+          
+          
+          
           <div class="grid md:grid-cols-2 gap-8">
             <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition group">
               <div class="flex items-center mb-6">
@@ -114,7 +126,7 @@
             <div class="text-center">
               <i class="fas fa-cogs text-4xl text-blue-600 mb-4"></i>
               <h3 class="text-xl font-bold mb-2">运作模式</h3>
-              <p class="text-gray-600">采用"老手带新手"的培养模式，注重实践指导和经验传承</p>
+              <p class="text-gray-600">采用<span class="text-blue-600">老手带新手</span>的培养模式，注重实践指导和经验传承</p>
             </div>
             <div class="text-center">
               <i class="fas fa-chart-line text-4xl text-blue-600 mb-4"></i>
