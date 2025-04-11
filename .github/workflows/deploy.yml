@@ -28,9 +28,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          BRANCH: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output/public
+          publish_dir: ./dist
+          BRANCH: gh-pages
           # GITHUB_TOKEN 在 setting->secrets and variables->Repository secrets 新建即可
           # 如果有自定义域名，添加 cname 配置
           # cname: yourdomain.com
