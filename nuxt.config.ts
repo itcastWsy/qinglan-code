@@ -10,6 +10,8 @@ declare module "@nuxtjs/color-mode" {
 }
 
 export default defineNuxtConfig({
+  ssr: false,
+  target: "static",
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
