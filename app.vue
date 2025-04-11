@@ -22,7 +22,7 @@
     </header>
 
     <main>
-      <!-- 首页横幅1 -->
+      <!-- 首页横幅 -->
       <section id="home" class="relative text-white py-20 overflow-hidden">
         <div class="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
