@@ -209,38 +209,13 @@
             <div class="grid md:grid-cols-3 gap-8">
               <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
-                  <i class="fab fa-github text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">Vue3 Admin</h4>
+                  <img src="/assets/images/zrbz.png" alt="自然壁纸" class="w-28 h-28 rounded-full mr-3">
+                  <h4 class="text-xl font-bold">自然壁纸</h4> 
                 </div>
-                <p class="text-gray-600 mb-4">基于Vue3 + TypeScript的后台管理系统框架，提供完整的权限管理和组件库。</p>
+                <p class="text-gray-600 mb-4">基于ArkTs、ArkUI开发的极简的壁纸应用</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">Vue3</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">TypeScript</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">开源</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fab fa-github text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">微服务脚手架</h4>
-                </div>
-                <p class="text-gray-600 mb-4">基于Spring Cloud的微服务开发脚手架，集成常用中间件和最佳实践。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">Spring Cloud</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">微服务</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">开源</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fab fa-github text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">AI助手SDK</h4>
-                </div>
-                <p class="text-gray-600 mb-4">集成主流AI模型的开发工具包，简化AI应用开发流程。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">AI</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">SDK</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">开源</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">ArkTs</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">ArkUI</span>
                 </div>
               </div>
             </div>
@@ -255,38 +230,13 @@
             <div class="grid md:grid-cols-3 gap-8">
               <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
-                  <i class="fas fa-mobile-alt text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">智能家居APP</h4>
+                  <img src="/assets/images/zrbz.png" alt="自然壁纸" class="w-28 h-28 rounded-full mr-3">
+                  <h4 class="text-xl font-bold">自然壁纸</h4> 
                 </div>
-                <p class="text-gray-600 mb-4">跨平台智能家居控制应用，支持多设备联动和场景定制。</p>
+                <p class="text-gray-600 mb-4">自然壁纸，随时随地为设备换上心仪的自然美景</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">Flutter</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">IoT</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">已上架</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-chart-line text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">数据分析平台</h4>
-                </div>
-                <p class="text-gray-600 mb-4">企业级数据分析平台，支持多维度数据分析和可视化展示。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">React</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">大数据</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">已上架</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-graduation-cap text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">在线教育平台</h4>
-                </div>
-                <p class="text-gray-600 mb-4">一站式在线教育解决方案，支持直播、录播和互动教学。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">Vue</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">教育</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">已上架</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">元服务</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">壁纸</span>
                 </div>
               </div>
             </div>
@@ -299,42 +249,47 @@
               技术文章
             </h3>
             <div class="grid md:grid-cols-3 gap-8">
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-code text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">微服务架构实践</h4>
-                </div>
-                <p class="text-gray-600 mb-4">深入探讨微服务架构的设计原则和最佳实践，分享实战经验。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">架构</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">微服务</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">技术文章</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-brain text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">AI应用开发指南</h4>
-                </div>
-                <p class="text-gray-600 mb-4">从零开始构建AI应用，详解模型训练和部署流程。</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">AI</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">机器学习</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">技术文章</span>
-                </div>
-              </div>
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+              <a target="_blank" href="https://juejin.cn/post/7441761663701041161" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
                   <i class="fas fa-shield-alt text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">Web安全攻防</h4>
+                  <h4 class="text-xl font-bold">元服务新建到上架全流程</h4>
                 </div>
-                <p class="text-gray-600 mb-4">Web应用安全防护指南，常见漏洞分析和防御方案。</p>
+                <p class="text-gray-600 mb-4">介绍了HarmonyOS Next元服务从新建到上架的全流程，包括在AGC平台新建项目与应用、修改元服务名称和图标，阐述签名文件相关知识并说明生成密钥和证书请求文件、申请发布证书和Profile文件的步骤，还提及手动签名、打包构建、新建发布、编辑资料，强调备案域名和元服务的流程及审核要点</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">安全</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">Web</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">技术文章</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">元服务</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">上架</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">签名</span>
                 </div>
-              </div>
+                <p class="text-gray-500 text-sm mt-3 italic">作者：万少</p>
+              </a>
+              <a target="_blank" href="https://juejin.cn/post/7447709833908273192" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-brain text-2xl text-gray-800 mr-3 icon-3d"></i>
+                  <h4 class="text-xl font-bold">HarmonyOS中那些不为人知的坑点</h4>
+                </div>
+                <p class="text-gray-600 mb-4">主要介绍了HarmonyOS Next性能优化方面的坑点及解决办法，包括大量数据懒加载时嵌套滑动组件需给子组件指定宽高，合理使用@State进行状态管理，合理使用布局容器（减少嵌套、移除冗余节点、使用扁平化布局），以及用if - else条件渲染代替visibility显隐控制、尽量给出组件宽高和占位图等小操作</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">性能</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">懒加载</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-3 italic">作者：君莫笑</p>
+
+              </a>
+              <a target="_blank" href="https://juejin.cn/post/7486146087792050213" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-code text-2xl text-gray-800 mr-3 icon-3d"></i>
+                  <h4 class="text-xl font-bold">当手势遇见鸿蒙，交互体验竟能如此惊艳
+                  </h4>
+                </div>
+                <p class="text-gray-600 mb-4">围绕鸿蒙系统的手势识别技术展开，介绍了捏合、旋转、滑动等单一手势的参数、事件及示例，还阐述顺序、并行、互斥三种组合手势的特点与示例</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">鸿蒙</span>
+                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">手势</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-3 italic">作者：云杰</p>
+              </a>
+       
+          
             </div>
           </div>
         </div>
