@@ -142,40 +142,51 @@
         <div class="container">
           <h2 class="heading text-center">核心成员</h2>
           <p class="subheading text-center">我们的技术骨干</p>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <div class="grid md:grid-cols-4 gap-6">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition">
               <div class="flex flex-col items-center">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="张明" class="w-32 h-32 rounded-full mb-4">
-                <h3 class="text-xl font-bold mb-2">张明</h3>
-                <p class="text-blue-600 mb-2">技术总监</p>
-                <p class="text-gray-600 text-center">10年全栈开发经验，精通微服务架构，主导多个大型项目开发。</p>
-                <div class="flex space-x-4 mt-4">
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                <img src="/assets/images/zero.jpg" alt="zero" class="w-28 h-28 rounded-full mb-3">
+                <h3 class="text-lg font-bold mb-2">zero</h3>
+                <p class="text-blue-600 mb-2">核心成员</p>
+                <p class="text-gray-600 text-center text-sm">拥有 10 年 + 后端开发及 3 年 + 大型架构设计经验，深度参与分布式系统、云原生等架构演进。主导设计多个百万级并发、跨可用区容灾系统，擅长 C#、Go、Rust 技术选型，精通 K8s、Istio 及混合云部署。强调 "架构即平衡"，带队构建日均过亿请求 API 网关，创新设计事件驱动架构与边缘 - 云端协同调度。秉持 "简洁设计解决本质问题" 的技术理念。</p>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition">
+              <div class="flex flex-col items-center">
+                <img src="/assets/images/wanshao.jpg" alt="万少" class="w-28 h-28 rounded-full mb-3">
+                <h3 class="text-lg font-bold mb-2">万少</h3>
+                <p class="text-blue-600 mb-2">核心成员</p>
+                <p class="text-gray-600 text-center text-sm">华为HDE 华为云 HCDE 华为鸿蒙社区问答专家、阿里云专家博主、掘金优秀作者、HarmonyOS学习资源创作先锋、HarmonyOS开发者达人、CSDN&HarmonyOS技术沙龙演讲嘉宾、10年互联网从业经验、资深全栈工程师、前端开源生态贡献者。具有丰富vue、react、小程序、鸿蒙原生应用开发经验。</p>
+                <div class="flex space-x-4 mt-3">
+                  <a href="https://itcastwsy.github.io/pub-blog/" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
+                  <a href="https://juejin.cn/user/4441682708283191" class="text-gray-400 hover:text-blue-600"><img src="/assets/images/juejin.svg" alt="掘金" class="w-5 h-5"></a>
                 </div>
               </div>
             </div>
-            <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition">
               <div class="flex flex-col items-center">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jane" alt="李华" class="w-32 h-32 rounded-full mb-4">
-                <h3 class="text-xl font-bold mb-2">李华</h3>
-                <p class="text-blue-600 mb-2">前端架构师</p>
-                <p class="text-gray-600 text-center">专注于前端工程化，Vue/React专家，开源社区活跃贡献者。</p>
-                <div class="flex space-x-4 mt-4">
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                <img src="/assets/images/junmoxiao.jpg" alt="云杰" class="w-28 h-28 rounded-full mb-3">
+                <h3 class="text-lg font-bold mb-2">君莫笑</h3>
+                <p class="text-blue-600 mb-2">核心成员</p>
+                <p class="text-gray-600 text-center text-sm">00后程序员
+掉落山洞发现上古程序员残魂："本帝被需求压榨千年，传你《摆烂心经》三式——假装掉线、接口报错、重启治百病"
+咖啡因转换器（输入需求=输出HarmonyOS应用+三根白发）
+掌握"把BUG写成彩蛋"的祖传秘方</p>
+                <div class="flex space-x-4 mt-3">
+                  <a href="https://juejin.cn/user/3103248627033531/posts" class="text-gray-400 hover:text-blue-600"><img src="/assets/images/juejin.svg" alt="掘金" class="w-5 h-5"></a>
                 </div>
               </div>
             </div>
-            <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition">
               <div class="flex flex-col items-center">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike" alt="王强" class="w-32 h-32 rounded-full mb-4">
-                <h3 class="text-xl font-bold mb-2">王强</h3>
-                <p class="text-blue-600 mb-2">后端架构师</p>
-                <p class="text-gray-600 text-center">分布式系统专家，擅长高并发架构设计，多个开源项目维护者。</p>
-                <div class="flex space-x-4 mt-4">
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
-                  <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-stack-overflow"></i></a>
+                <img src="/assets/images/wj.jpg" alt="云杰" class="w-28 h-28 rounded-full mb-3">
+                <h3 class="text-lg font-bold mb-2">云杰</h3>
+                <p class="text-blue-600 mb-2">核心成员</p>
+                <p class="text-gray-600 text-center text-sm">鸿蒙应用开发工程师，华为鸿蒙开发高级认证，参与多种鸿蒙作品的开发，独立上架过多款鸿蒙app和元服务。如果鸿蒙生态是一片星空，那我就是那颗努力闪烁的小恒星（虽然还不够亮，但正在发光发热中）。
+个人宣言 
+代码千行，初心不改，用技术点亮智慧生活。</p>
+                <div class="flex space-x-4 mt-3">
+                  <a href="https://juejin.cn/user/3877341924964713" class="text-gray-400 hover:text-blue-600"><img src="/assets/images/juejin.svg" alt="掘金" class="w-5 h-5"></a>
                 </div>
               </div>
             </div>
@@ -334,24 +345,53 @@
         <div class="container">
           <h2 class="heading text-center">联系我们</h2>
           <p class="subheading text-center">期待与您合作</p>
+          
           <div class="max-w-2xl mx-auto">
-            <form class="space-y-6">
-              <div>
-                <label class="block text-gray-700 mb-2">姓名</label>
-                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+              <h3 class="text-2xl font-bold mb-6 text-center">联系方式</h3>
+              <div class="space-y-6">
+                <div class="flex items-center">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fab fa-weixin text-2xl text-blue-600"></i>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-gray-600">微信公众号</p>
+                    <p class="text-lg font-semibold">青蓝逐码</p>
+                  </div>
+                  <div class="ml-4">
+                    <img src="/assets/images/logo.svg" alt="微信公众号二维码" class="w-24 h-24 rounded-lg shadow-sm">
+                    <p class="text-xs text-gray-500 text-center mt-1">扫码关注</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fab fa-weixin text-2xl text-blue-600"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-600">微信</p>
+                    <p class="text-lg font-semibold">w846903522</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-envelope text-2xl text-blue-600"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-600">邮箱</p>
+                    <p class="text-lg font-semibold">yeah126139163@163.com</p>
+                  </div>
+                </div>
+                <!-- <div class="flex items-center">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-phone text-2xl text-blue-600"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-600">手机</p>
+                    <p class="text-lg font-semibold">15915943091</p>
+                  </div>
+                </div> -->
               </div>
-              <div>
-                <label class="block text-gray-700 mb-2">邮箱</label>
-                <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-              </div>
-              <div>
-                <label class="block text-gray-700 mb-2">留言</label>
-                <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4"></textarea>
-              </div>
-              <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-                发送消息
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </section>
