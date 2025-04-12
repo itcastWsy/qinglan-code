@@ -387,6 +387,8 @@
 
 <script setup>
 // 这里可以添加组件逻辑
+import teamData from '@/assets/mock/team.json'
+const members=teamData
 </script>
 
 <style scoped>
