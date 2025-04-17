@@ -304,7 +304,7 @@ const fetchApplications = async () => {
 
 const fetchArticles = async () => {
   try {
-    const res = await request.get("/articles?sort=createdAt&limit=6");
+    const res = await request.get("/articles?sort=createdAt&fields=id,title,description,tags,author,createdAt");
     articles.value = res.data;
   } catch (error) {
     console.error("获取文章失败:", error);

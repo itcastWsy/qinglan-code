@@ -39,10 +39,11 @@ export interface IArticle {
   id: number;
   documentId: string;
   title: string;
-  url: string;
   description: string;
-  icon: string;
   tags: string[];
   author: string;
   content?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
 }
