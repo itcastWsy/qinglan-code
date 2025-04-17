@@ -145,14 +145,14 @@
           <div class="grid md:grid-cols-4 gap-6">
             <div v-for="member in members" :key="member.name" class="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition">
               <div class="flex flex-col items-center">
-                <img :src="member.avatar" :alt="member.name" class="w-28 h-28 rounded-full mb-3">
+                <img :src="member.avatar_links" :alt="member.name" class="w-28 h-28 rounded-full mb-3">
                 <h3 class="text-lg font-bold mb-2">{{ member.name }}</h3>
                 <p class="text-blue-600 mb-2">{{ member.role }}</p>
                 <p class="text-gray-600 text-center text-sm">{{ member.description }}</p>
-                <div v-if="member.social_links && member.social_links.length > 0" class="flex space-x-4 mt-3">
-                  <a v-for="link in member.social_links" :key="link.url" :href="link.url" class="text-gray-400 hover:text-blue-600">
-                    <i v-if="link.platform === 'github'" class="fab fa-github"></i>
-                    <img v-else-if="link.platform === 'juejin'" src="/assets/images/juejin.svg" alt="掘金" class="w-5 h-5">
+                <div class="flex space-x-4 mt-3">
+                  <a  :href="member.social_links" class="text-gray-400 hover:text-blue-600">
+                    <i  class="fa fa-home"></i>
+                    <!-- <img :src="member.avatar_links" alt="掘金" class="w-5 h-5"> -->
                   </a>
                 </div>
               </div>
@@ -174,15 +174,14 @@
               开源项目
             </h3>
             <div class="grid md:grid-cols-3 gap-8">
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+              <div v-for="product in projects" :key="product.id" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
-                  <img src="/assets/images/zrbz.png" alt="自然壁纸" class="w-28 h-28 rounded-full mr-3">
-                  <h4 class="text-xl font-bold">自然壁纸</h4> 
+                  <img :src="product.logo_link" :alt="product.name" class="w-28 h-28 rounded-full mr-3">
+                  <h4 class="text-xl font-bold">{{ product.name }}</h4> 
                 </div>
-                <p class="text-gray-600 mb-4">基于ArkTs、ArkUI开发的极简的壁纸应用</p>
+                <p class="text-gray-600 mb-4">{{ product.description }}</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">ArkTs</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">ArkUI</span>
+                  <span v-for="(tag, index) in product.tags" :key="index" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">{{ tag }}</span>
                 </div>
               </div>
             </div>
@@ -195,15 +194,14 @@
               上架项目
             </h3>
             <div class="grid md:grid-cols-3 gap-8">
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+              <div v-for="app in applications" :key="app.id" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
-                  <img src="/assets/images/zrbz.png" alt="自然壁纸" class="w-28 h-28 rounded-full mr-3">
-                  <h4 class="text-xl font-bold">自然壁纸</h4> 
+                  <img :src="app.logo_link" :alt="app.name" class="w-28 h-28 rounded-full mr-3">
+                  <h4 class="text-xl font-bold">{{ app.name }}</h4> 
                 </div>
-                <p class="text-gray-600 mb-4">自然壁纸，随时随地为设备换上心仪的自然美景</p>
+                <p class="text-gray-600 mb-4">{{ app.description }}</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">元服务</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">壁纸</span>
+                  <span v-for="(tag, index) in app.tags" :key="index" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">{{ tag }}</span>
                 </div>
               </div>
             </div>
@@ -216,47 +214,17 @@
               技术文章
             </h3>
             <div class="grid md:grid-cols-3 gap-8">
-              <a target="_blank" href="https://juejin.cn/post/7441761663701041161" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+              <a v-for="article in articles" :key="article.id" :href="article.url" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
                 <div class="flex items-center mb-4">
-                  <i class="fas fa-shield-alt text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">元服务新建到上架全流程</h4>
+                  <i :class="article.icon || 'fas fa-file-alt'" class="text-2xl text-gray-800 mr-3 icon-3d"></i>
+                  <h4 class="text-xl font-bold">{{ article.title }}</h4>
                 </div>
-                <p class="text-gray-600 mb-4">介绍了HarmonyOS Next元服务从新建到上架的全流程，包括在AGC平台新建项目与应用、修改元服务名称和图标，阐述签名文件相关知识并说明生成密钥和证书请求文件、申请发布证书和Profile文件的步骤，还提及手动签名、打包构建、新建发布、编辑资料，强调备案域名和元服务的流程及审核要点</p>
+                <p class="text-gray-600 mb-4">{{ article.description }}</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">元服务</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">上架</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">签名</span>
+                  <span v-for="(tag, index) in article.tags" :key="index" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">{{ tag }}</span>
                 </div>
-                <p class="text-gray-500 text-sm mt-3 italic">作者：万少</p>
+                <p class="text-gray-500 text-sm mt-3 italic">作者：{{ article.author }}</p>
               </a>
-              <a target="_blank" href="https://juejin.cn/post/7447709833908273192" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-brain text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">HarmonyOS中那些不为人知的坑点</h4>
-                </div>
-                <p class="text-gray-600 mb-4">主要介绍了HarmonyOS Next性能优化方面的坑点及解决办法，包括大量数据懒加载时嵌套滑动组件需给子组件指定宽高，合理使用@State进行状态管理，合理使用布局容器（减少嵌套、移除冗余节点、使用扁平化布局），以及用if - else条件渲染代替visibility显隐控制、尽量给出组件宽高和占位图等小操作</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">性能</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">懒加载</span>
-                </div>
-                <p class="text-gray-500 text-sm mt-3 italic">作者：君莫笑</p>
-
-              </a>
-              <a target="_blank" href="https://juejin.cn/post/7486146087792050213" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
-                <div class="flex items-center mb-4">
-                  <i class="fas fa-code text-2xl text-gray-800 mr-3 icon-3d"></i>
-                  <h4 class="text-xl font-bold">当手势遇见鸿蒙，交互体验竟能如此惊艳
-                  </h4>
-                </div>
-                <p class="text-gray-600 mb-4">围绕鸿蒙系统的手势识别技术展开，介绍了捏合、旋转、滑动等单一手势的参数、事件及示例，还阐述顺序、并行、互斥三种组合手势的特点与示例</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">鸿蒙</span>
-                  <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">手势</span>
-                </div>
-                <p class="text-gray-500 text-sm mt-3 italic">作者：云杰</p>
-              </a>
-       
-          
             </div>
           </div>
         </div>
@@ -352,12 +320,41 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import request from './utils/request';
+import { IMember,IProject,IApplication,IArticle } from './types';
+const members = ref<IMember[]>([]);
+const projects = ref<IProject[]>([]);
+const applications = ref<IApplication[]>([]);
+const articles = ref<IArticle[]>([]);
 // 这里可以添加组件逻辑
-import teamData from '@/assets/mock/team.json'
-const members=teamData
+const fetchMembers = async () => {
+  const res = await request.get("/members?sort=createdAt");
+  members.value=res.data
+};
+const fetchProducts = async () => {
+  const res = await request.get("/projects?sort=createdAt");
+  projects.value=res.data
+};
+const fetchApplications = async () => {
+  const res = await request.get("/applications?sort=createdAt");
+  applications.value=res.data
+};
+const fetchArticles = async () => {
+  const res = await request.get("/articles?sort=createdAt");
+  articles.value=res.data
+};
+
+onMounted(() => {
+  fetchMembers();
+  fetchProducts();
+  fetchApplications();
+  fetchArticles();
+});
 </script>
 
-<style scoped>
+<style >
 /* 这里可以添加组件特定的样式 */
+/* @import "./style.css"; */
 </style> 
