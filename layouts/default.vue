@@ -16,9 +16,20 @@
             <NuxtLink to="/#works" class="text-gray-600 hover:text-blue-600 nav-link-3d">作品</NuxtLink>
             <NuxtLink to="/#contact" class="text-gray-600 hover:text-blue-600 nav-link-3d">联系我们</NuxtLink>
           </div>
-          <button class="md:hidden">
+          <button @click="toggleMobileMenu" class="md:hidden">
             <i class="fas fa-bars text-2xl"></i>
           </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div v-if="isMobileMenuOpen" class="md:hidden py-4 animate-fade-in">
+          <div class="flex flex-col space-y-4">
+            <NuxtLink to="/" class="text-gray-600 hover:text-blue-600 py-2 border-b border-gray-200" @click="closeMobileMenu">首页</NuxtLink>
+            <NuxtLink to="/#about" class="text-gray-600 hover:text-blue-600 py-2 border-b border-gray-200" @click="closeMobileMenu">关于我们</NuxtLink>
+            <NuxtLink to="/#team" class="text-gray-600 hover:text-blue-600 py-2 border-b border-gray-200" @click="closeMobileMenu">团队</NuxtLink>
+            <NuxtLink to="/#works" class="text-gray-600 hover:text-blue-600 py-2 border-b border-gray-200" @click="closeMobileMenu">作品</NuxtLink>
+            <NuxtLink to="/#contact" class="text-gray-600 hover:text-blue-600 py-2" @click="closeMobileMenu">联系我们</NuxtLink>
+          </div>
         </div>
       </nav>
     </header>
@@ -59,6 +70,20 @@
     </footer>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const isMobileMenuOpen = ref(false);
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false;
+};
+</script>
 
 <style scoped>
 .container {
