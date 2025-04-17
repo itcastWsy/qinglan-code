@@ -59,15 +59,15 @@ export default defineNuxtConfig({
           type: "image/svg+xml",
           href: "https://wsy997.obs.cn-east-3.myhuaweicloud.com/pcweb/logo.svg",
         },
-        {
-          rel: "stylesheet",
-          href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css",
-        },
+        // {
+        //   rel: "stylesheet",
+        //   href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css",
+        // },
       ],
     },
   },
 
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/css/main.css", "~/assets/css/font.css"],
 
   compatibilityDate: "2025-04-11",
 });
