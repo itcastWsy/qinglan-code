@@ -10,6 +10,7 @@ body {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
+  padding-top: 1rem;
 }
 
 .container {

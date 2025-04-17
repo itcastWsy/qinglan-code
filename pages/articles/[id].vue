@@ -4,87 +4,111 @@
     <div class="w-full h-40 bg-gradient-to-r from-blue-500 to-blue-700"></div>
     
     <div class="container mx-auto px-4 py-8">
-      <div class="max-w-4xl mx-auto -mt-24 bg-white rounded-lg shadow-xl overflow-hidden">
-        <!-- 文章头部 -->
-        <div class="p-8 border-b">
-          <div v-if="article">
-            <!-- 返回按钮 -->
-            <div class="mb-6">
-              <NuxtLink to="/articles" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
-                <i class="fas fa-arrow-left mr-2"></i>
-                返回文章列表
-              </NuxtLink>
-            </div>
-            
-            <!-- 文章标题和元信息 -->
-            <h1 class="text-3xl font-bold mb-4">{{ article.title }}</h1>
-            
-            <div class="flex flex-wrap items-center text-gray-500 mb-8">
-              <div class="flex items-center mr-6 mb-2">
-                <i class="fas fa-user mr-2"></i>
-                <span>{{ article.author }}</span>
+      <div class="relative lg:pr-72">
+        <!-- 主要内容区 -->
+        <div class="max-w-4xl mx-auto -mt-24 bg-white rounded-lg shadow-xl overflow-hidden">
+          <!-- 文章头部 -->
+          <div class="p-8 border-b">
+            <div v-if="article">
+              <!-- 返回按钮 -->
+              <div class="mb-6">
+                <NuxtLink to="/articles" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                  <i class="fas fa-arrow-left mr-2"></i>
+                  返回文章列表
+                </NuxtLink>
               </div>
               
-              <div class="flex flex-wrap gap-2 mb-2">
-                <span 
-                  v-for="(tag, index) in article.tags" 
-                  :key="index" 
-                  class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm"
-                >
-                  {{ tag }}
-                </span>
+              <!-- 文章标题和元信息 -->
+              <h1 class="text-3xl font-bold mb-4">{{ article.title }}</h1>
+              
+              <div class="flex flex-wrap items-center text-gray-500 mb-8">
+                <div class="flex items-center mr-6 mb-2">
+                  <i class="fas fa-user mr-2"></i>
+                  <span>{{ article.author }}</span>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span 
+                    v-for="(tag, index) in article.tags" 
+                    :key="index" 
+                    class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm"
+                  >
+                    {{ tag }}
+                  </span>
+                </div>
+              </div>
+              
+              <!-- 文章描述 -->
+              <div class="bg-gray-50 p-5 rounded-lg mb-8 italic text-gray-700">
+                {{ article.description }}
               </div>
             </div>
             
-            <!-- 文章描述 -->
-            <div class="bg-gray-50 p-5 rounded-lg mb-8 italic text-gray-700">
-              {{ article.description }}
+            <div v-else class="py-8 text-center">
+              <i class="fas fa-spinner fa-spin text-3xl text-blue-600 mb-4"></i>
+              <p>加载文章中...</p>
             </div>
           </div>
           
-          <div v-else class="py-8 text-center">
-            <i class="fas fa-spinner fa-spin text-3xl text-blue-600 mb-4"></i>
-            <p>加载文章中...</p>
+          <!-- 文章内容 -->
+          <div v-if="article" class="p-8">
+            <div class="prose prose-lg max-w-none" ref="articleContent">
+              <div v-if="article.content" v-html="renderedContent"></div>
+              <div v-else class="py-8 text-center">
+                <p class="text-gray-500">文章内容暂时不可用</p>
+              </div>
+            </div>
           </div>
         </div>
         
-        <!-- 文章内容 -->
-        <div v-if="article" class="p-8">
-          <div class="prose prose-lg max-w-none">
-            <div v-if="article.content" v-html="renderedContent"></div>
-            <div v-else class="py-8 text-center">
-              <p class="text-gray-500">文章内容暂时不可用</p>
+        <!-- 底部导航 -->
+        <div class="max-w-4xl mx-auto mt-8">
+          <div class="flex justify-between items-center">
+            <NuxtLink 
+              to="/articles" 
+              class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition"
+            >
+              <i class="fas fa-th-large mr-2"></i>
+              所有文章
+            </NuxtLink>
+            
+            <div>
+              <button 
+                class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition mx-1"
+                @click="shareArticle"
+              >
+                <i class="fas fa-share-alt"></i>
+              </button>
+              
+              <button 
+                class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition mx-1"
+                @click="printArticle"
+              >
+                <i class="fas fa-print"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- 底部导航 -->
-      <div class="max-w-4xl mx-auto mt-8">
-        <div class="flex justify-between items-center">
-          <NuxtLink 
-            to="/articles" 
-            class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition"
-          >
-            <i class="fas fa-th-large mr-2"></i>
-            所有文章
-          </NuxtLink>
-          
-          <div>
-            <button 
-              class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition mx-1"
-              @click="shareArticle"
-            >
-              <i class="fas fa-share-alt"></i>
-            </button>
-            
-            <button 
-              class="bg-white px-5 py-3 rounded-lg shadow text-gray-600 hover:text-blue-600 transition mx-1"
-              @click="printArticle"
-            >
-              <i class="fas fa-print"></i>
-            </button>
-          </div>
+      <!-- 右侧目录导航 -->
+      <div v-if="tableOfContents.length > 0" class="hidden lg:block fixed right-8 top-1/2 transform -translate-y-1/2 w-64 z-10">
+        <div class="bg-white rounded-lg shadow-lg p-5">
+          <h3 class="text-lg font-bold mb-4 text-gray-700">文章目录</h3>
+          <ul class="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
+            <li v-for="(item, index) in tableOfContents" :key="index">
+              <a 
+                :href="`#${item.id}`" 
+                class="toc-item text-gray-600 hover:text-blue-600 transition-colors block py-1 border-l-2 pl-3"
+                :class="[
+                  activeHeading === item.id ? 'active-heading border-blue-500 text-blue-600 font-medium bg-blue-50' : 'border-transparent'
+                ]"
+                @click.prevent="scrollToHeading(item.id, $event)"
+              >
+                {{ item.text }}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -92,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch, onUnmounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import request from '../../utils/request';
 import { IArticle } from '../../types';
@@ -102,12 +126,97 @@ const route = useRoute();
 const articleId = computed(() => route.params.id);
 const article = ref<IArticle | null>(null);
 const loading = ref(true);
+const articleContent = ref<HTMLElement | null>(null);
+const tableOfContents = ref<Array<{ id: string; text: string }>>([]);
+const activeHeading = ref<string | null>(null);
 
 // 使用marked将markdown转换为HTML
 const renderedContent = computed(() => {
   if (!article.value?.content) return '';
   return marked(article.value.content);
 });
+
+// 提取H2标题作为目录项
+const extractTableOfContents = () => {
+  if (!articleContent.value) return;
+  
+  // 获取所有的h2标题
+  const headings = articleContent.value.querySelectorAll('h2');
+  const tocItems: Array<{ id: string; text: string }> = [];
+  
+  headings.forEach((heading, index) => {
+    // 如果标题没有id，则创建一个
+    if (!heading.id) {
+      heading.id = `heading-${index}`;
+    }
+    
+    tocItems.push({
+      id: heading.id,
+      text: heading.textContent || `标题 ${index + 1}`
+    });
+  });
+  
+  tableOfContents.value = tocItems;
+};
+
+// 滚动到对应标题位置
+const scrollToHeading = (id: string, event: Event) => {
+  console.log('点击了目录项:', id);
+  
+  // 手动处理高亮样式
+  // 1. 移除所有目录项的高亮
+  document.querySelectorAll('.toc-item').forEach(item => {
+    item.classList.remove('active-heading', 'border-blue-500', 'text-blue-600', 'font-medium', 'bg-blue-50');
+    item.classList.add('border-transparent');
+  });
+  
+  // 2. 给当前点击的元素添加高亮
+  const clickedElement = event.currentTarget as HTMLElement;
+  if (clickedElement) {
+    clickedElement.classList.add('active-heading', 'border-blue-500', 'text-blue-600', 'font-medium', 'bg-blue-50');
+    clickedElement.classList.remove('border-transparent');
+  }
+  
+  // 更新活跃标题变量
+  activeHeading.value = id;
+  
+  // 滚动到对应位置
+  nextTick(() => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+};
+
+// 检测当前活跃的标题
+const checkActiveHeading = () => {
+  if (tableOfContents.value.length === 0 || !articleContent.value) return;
+  
+  const headingElements = tableOfContents.value.map(item => document.getElementById(item.id));
+  const validHeadings = headingElements.filter(el => el !== null) as HTMLElement[];
+  
+  if (validHeadings.length === 0) return;
+  
+  // 获取距离视口顶部最近的标题
+  const scrollPosition = window.scrollY + 100; // 添加一些偏移量
+  
+  for (const heading of validHeadings) {
+    const offsetTop = heading.offsetTop;
+    if (offsetTop > scrollPosition) {
+      continue;
+    }
+    
+    activeHeading.value = heading.id;
+    return;
+  }
+  
+  // 如果没有找到，默认选中第一个
+  activeHeading.value = validHeadings[0].id;
+};
 
 // 获取文章数据
 const fetchArticle = async () => {
@@ -119,21 +228,7 @@ const fetchArticle = async () => {
       const listRes = await request.get(`/articles/${articleId.value}`);
       article.value = listRes.data;
       
-      if (article.value && article.value.documentId) {
-        // 使用documentId获取详细内容
-        const detailRes = await request.get(`/article-content/${article.value.documentId}`);
-        
-        if (detailRes.data && detailRes.data.content) {
-          // 如果成功获取内容，更新文章内容
-          article.value.content = detailRes.data.content;
-        } else {
-          // 如果无法获取内容，使用生成的内容
-          article.value.content = generateDummyContent(article.value.title, article.value.description);
-        }
-      } else if (article.value && !article.value.content) {
-        // 如果没有documentId或content，生成示例内容
-        article.value.content = generateDummyContent(article.value.title, article.value.description);
-      }
+
     }
   } catch (error) {
     console.error("获取文章失败:", error);
@@ -219,8 +314,24 @@ const printArticle = () => {
   window.print();
 };
 
+// 监听DOM变化，提取目录
+watch(() => article.value?.content, () => {
+  // 在内容渲染后，使用nextTick确保DOM更新
+  setTimeout(() => {
+    extractTableOfContents();
+  }, 100);
+}, { immediate: false });
+
 onMounted(() => {
   fetchArticle();
+  
+  // 监听滚动事件，以更新活跃标题
+  window.addEventListener('scroll', checkActiveHeading, { passive: true });
+});
+
+// 组件销毁时移除滚动监听
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkActiveHeading);
 });
 </script>
 
@@ -247,6 +358,7 @@ onMounted(() => {
 
 .prose h2 {
   font-size: 1.75em;
+  scroll-margin-top: 80px; /* 确保滚动到标题时有足够的上边距 */
 }
 
 .prose h3 {
@@ -319,6 +431,16 @@ onMounted(() => {
   border-color: #e2e8f0;
   margin-top: 3em;
   margin-bottom: 3em;
+}
+
+/* 目录项高亮样式 */
+.toc-item.active-heading {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  font-weight: 500;
+  border-left-color: #3b82f6;
+  border-left-width: 2px;
+  transition: all 0.2s ease;
 }
 
 /* 打印样式 */

@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <header class="bg-white shadow-sm">
+  <div >
+    <header class="bg-white p-2 shadow-sm fixed top-0 left-0 w-full z-50">
       <nav class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
           <div class="flex items-center">
             <NuxtLink to="/">
-              <img src="/assets/images/logo.svg" alt="Logo" class="h-12 w-12 mr-4">
+              <img src="https://wsy997.obs.cn-east-3.myhuaweicloud.com/pcweb/logo.svg" alt="Logo" class="h-12 w-12 mr-4">
             </NuxtLink>
             <span class="text-2xl font-bold text-gray-800">青蓝逐码</span>
           </div>
