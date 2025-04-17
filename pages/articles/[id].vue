@@ -121,12 +121,63 @@ import { useRoute } from 'vue-router';
 import request from '../../utils/request';
 import { IArticle } from '../../types';
 import { marked } from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css'; // 引入深色主题样式
 
-// 设置marked选项，启用表格支持
-marked.use({
+// 配置marked选项
+marked.setOptions({
   gfm: true, // 启用GitHub风格Markdown，包括表格支持
   breaks: true, // 支持回车换行
 });
+
+// 使用marked将markdown转换为HTML
+const renderedContent = computed(() => {
+  if (!article.value?.content) return '';
+  return marked(article.value.content);
+});
+
+// 处理代码块高亮和行号
+const processCodeBlocks = () => {
+  if (!articleContent.value) return;
+
+  // 获取所有代码块
+  const codeBlocks = articleContent.value.querySelectorAll('pre code');
+  
+  codeBlocks.forEach((codeBlock) => {
+    // 高亮处理
+    hljs.highlightElement(codeBlock as HTMLElement);
+    
+    // 获取代码行
+    const code = codeBlock.innerHTML;
+    const lines = code.split('\n').filter(line => line.trim() !== '');
+    
+    // 生成行号
+    const lineNumbers = document.createElement('div');
+    lineNumbers.className = 'line-numbers';
+    
+    for (let i = 1; i <= lines.length; i++) {
+      const lineNumber = document.createElement('span');
+      lineNumber.className = 'line-number';
+      lineNumber.textContent = i.toString();
+      lineNumbers.appendChild(lineNumber);
+    }
+    
+    // 给代码添加行包装
+    codeBlock.innerHTML = lines.map(line => `<span class="line-of-code">${line}</span>`).join('\n');
+    
+    // 创建包装容器
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapper';
+    
+    // 将原始代码块的父元素（pre标签）包裹在新的容器中
+    const preElement = codeBlock.parentElement;
+    if (preElement) {
+      preElement.parentElement?.insertBefore(wrapper, preElement);
+      wrapper.appendChild(lineNumbers);
+      wrapper.appendChild(preElement);
+    }
+  });
+};
 
 const route = useRoute();
 const articleId = computed(() => route.params.id);
@@ -135,12 +186,6 @@ const loading = ref(true);
 const articleContent = ref<HTMLElement | null>(null);
 const tableOfContents = ref<Array<{ id: string; text: string }>>([]);
 const activeHeading = ref<string | null>(null);
-
-// 使用marked将markdown转换为HTML
-const renderedContent = computed(() => {
-  if (!article.value?.content) return '';
-  return marked(article.value.content);
-});
 
 // 提取H2标题作为目录项
 const extractTableOfContents = () => {
@@ -275,11 +320,17 @@ ${description}
 
 ## 核心概念
 
-- 概念一：这是第一个重要概念的详细解释
-- 概念二：这是第二个重要概念的详细解释
-- 概念三：这是第三个重要概念的详细解释
+* 概念一：这是第一个重要概念的详细解释
+* 概念二：这是第二个重要概念的详细解释
+* 概念三：这是第三个重要概念的详细解释
 
-## 代码示例
+也可以使用减号作为列表标记：
+
+- 要点一：这是第一个要点
+- 要点二：这是第二个要点
+- 要点三：这是第三个要点
+
+## JavaScript代码示例
 
 \`\`\`javascript
 // 这是一个示例代码块
@@ -292,6 +343,119 @@ function example() {
   console.log('这是一个关于' + data.title + '的示例');
   return data;
 }
+
+// 异步函数示例
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('获取数据失败:', error);
+    return null;
+  }
+}
+\`\`\`
+
+## Python代码示例
+
+\`\`\`python
+# 这是Python代码示例
+import pandas as pd
+import numpy as np
+
+def analyze_data(data_path):
+    # 读取数据
+    df = pd.read_csv(data_path)
+    
+    # 数据处理
+    df_clean = df.dropna()
+    
+    # 简单统计
+    mean_value = df_clean['value'].mean()
+    median_value = df_clean['value'].median()
+    
+    return {
+        "mean": mean_value,
+        "median": median_value,
+        "count": len(df_clean)
+    }
+
+# 调用函数
+result = analyze_data('example_data.csv')
+print(f"平均值: {result['mean']}, 中位数: {result['median']}")
+\`\`\`
+
+## Java代码示例
+
+\`\`\`java
+/**
+ * 这是一个Java类示例
+ */
+public class ExampleClass {
+    private String name;
+    private int count;
+    
+    public ExampleClass(String name) {
+        this.name = name;
+        this.count = 0;
+    }
+    
+    public void increment() {
+        this.count++;
+    }
+    
+    public void printInfo() {
+        System.out.println("名称: " + this.name + ", 计数: " + this.count);
+    }
+    
+    public static void main(String[] args) {
+        ExampleClass example = new ExampleClass("测试");
+        example.increment();
+        example.increment();
+        example.printInfo();
+    }
+}
+\`\`\`
+
+## HTML与CSS示例
+
+\`\`\`html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>示例页面</title>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #f0f4ff;
+            color: #3b5bdb;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>欢迎</h2>
+            <p>这是一个带有<span class="highlight">高亮</span>样式的示例。</p>
+        </div>
+    </div>
+</body>
+</html>
 \`\`\`
 
 ## 功能对比表
@@ -361,12 +525,13 @@ const printArticle = () => {
   window.print();
 };
 
-// 监听DOM变化，提取目录
+// 监听DOM变化，添加代码高亮和行号
 watch(() => article.value?.content, () => {
   // 在内容渲染后，使用nextTick确保DOM更新
-  setTimeout(() => {
+  nextTick(() => {
+    processCodeBlocks();
     extractTableOfContents();
-  }, 100);
+  });
 }, { immediate: false });
 
 onMounted(() => {
@@ -389,6 +554,70 @@ onUnmounted(() => {
   max-width: 65ch;
   font-size: 1rem;
   line-height: 1.75;
+}
+
+/* 代码块样式 */
+.prose .code-block-wrapper {
+  margin: 1.5em 0;
+  position: relative;
+  border-radius: 0.375rem;
+  overflow: auto;
+  display: flex;
+  background-color: #282c34; /* 深色背景 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.prose .line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0.5em;
+  background-color: #21252b;
+  border-right: 1px solid #3e4451;
+  color: #636d83;
+  text-align: right;
+  user-select: none;
+  min-width: 2.5em;
+}
+
+.prose .line-number {
+  padding: 0 0.5em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875em;
+  line-height: 1.5;
+}
+
+.prose pre {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  flex-grow: 1;
+}
+
+.prose pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875em;
+  line-height: 1.5;
+  background-color: transparent !important;
+}
+
+.prose .line-of-code {
+  display: block;
+  min-height: 1.5em;
+}
+
+/* 行内代码样式 */
+.prose :not(pre) > code {
+  background-color: #f1f5f9;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  color: #c53030;
+  font-weight: 600;
+  font-size: 0.875em;
+  white-space: nowrap;
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
@@ -433,7 +662,29 @@ onUnmounted(() => {
   padding-left: 1.625em;
 }
 
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
 .prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li::marker {
+  color: #6b7280;
+}
+
+.prose li > p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose li > ul, .prose li > ol {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -446,25 +697,6 @@ onUnmounted(() => {
   padding-left: 1em;
   margin-top: 1.25em;
   margin-bottom: 1.25em;
-}
-
-.prose pre {
-  background-color: #f7fafc;
-  border-radius: 0.375rem;
-  padding: 1em;
-  overflow-x: auto;
-}
-
-.prose code {
-  color: #c53030;
-  font-weight: 600;
-  font-size: 0.875em;
-}
-
-.prose pre code {
-  color: inherit;
-  font-weight: 400;
-  font-size: 0.875em;
 }
 
 .prose img {
