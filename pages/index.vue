@@ -194,9 +194,9 @@
             </NuxtLink>
           </h3>
           <div class="grid md:grid-cols-3 gap-8">
-            <NuxtLink v-for="article in articles.slice(0, 6)" :key="article.id" :to="`/articles/${article.documentId}`" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+            <NuxtLink v-for="article in articles" :key="article.id" :to="`/articles/${article.documentId}`" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
               <div class="flex items-center mb-4">
-                <i :class="article.icon || 'fas fa-file-alt'" class="text-2xl text-gray-800 mr-3 icon-3d"></i>
+                <i :class=" 'fas fa-file-alt'" class="text-2xl text-gray-800 mr-3 icon-3d"></i>
                 <h4 class="text-xl font-bold">{{ article.title }}</h4>
               </div>
               <p class="text-gray-600 mb-4">{{ article.description }}</p>

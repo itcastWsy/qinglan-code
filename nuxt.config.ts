@@ -10,6 +10,15 @@ declare module "@nuxtjs/color-mode" {
 }
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    // 服务器端私有变量
+    apiSecret: process.env.API_SECRET,
+
+    // 客户端和服务器端都可访问的公共变量
+    public: {
+      apiUrl: process.env.API_URL,
+    },
+  },
   ssr: false,
   target: "static",
   devtools: { enabled: true },
@@ -36,7 +45,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NODE_ENV === "production" ? "/qinglan-code/" : "/",
+    baseURL: process.env.NODE_ENV === "production" ? "/" : "/",
     head: {
       title: "青蓝逐码团队",
       meta: [

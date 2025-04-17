@@ -4,11 +4,16 @@ import axios, {
   InternalAxiosRequestConfig,
   AxiosRequestHeaders,
 } from "axios";
+import { useRuntimeConfig } from "nuxt/app";
 
 // 创建axios实例
+const config = useRuntimeConfig();
+
+// 使用公共环境变量（服务器端和客户端都可用）
+const apiUrl = config.public.apiUrl;
+console.log("apiUrl", apiUrl);
 const service: AxiosInstance = axios.create({
-  // baseURL: "http://localhost:1337/api", // 基地址
-  baseURL: "http://113.45.56.182:8080/api", // 基地址
+  baseURL: apiUrl as string, // 基地址
   timeout: 10000, // 请求超时时间：10秒
   headers: {
     "Content-Type": "application/json",
