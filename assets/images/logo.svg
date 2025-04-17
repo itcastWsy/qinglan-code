@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- 背景圆形 -->
-  <circle cx="25" cy="25" r="24" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
-  
-  <!-- 代码符号 -->
-  <path d="M15 20L20 25L15 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <path d="M35 20L30 25L35 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  
-  <!-- 连接线 -->
-  <path d="M22 25H28" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  
-  <!-- 装饰点 -->
-  <circle cx="25" cy="15" r="2" fill="white"/>
-  <circle cx="25" cy="35" r="2" fill="white"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="128" fill="#0066FF"/>
+  <path d="M256 128C187.307 128 132 183.307 132 252C132 320.693 187.307 376 256 376C324.693 376 380 320.693 380 252C380 183.307 324.693 128 256 128ZM256 344C205.29 344 164 302.71 164 252C164 201.29 205.29 160 256 160C306.71 160 348 201.29 348 252C348 302.71 306.71 344 256 344Z" fill="white"/>
+  <path d="M256 188C220.654 188 192 216.654 192 252C192 287.346 220.654 316 256 316C291.346 316 320 287.346 320 252C320 216.654 291.346 188 256 188ZM256 284C238.327 284 224 269.673 224 252C224 234.327 238.327 220 256 220C273.673 220 288 234.327 288 252C288 269.673 273.673 284 256 284Z" fill="#B3D1FF"/>
+  <path d="M256 232C247.163 232 240 239.163 240 248C240 256.837 247.163 264 256 264C264.837 264 272 256.837 272 248C272 239.163 264.837 232 256 232Z" fill="white"/>
 </svg> 
