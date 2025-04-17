@@ -7,7 +7,8 @@ import axios, {
 
 // 创建axios实例
 const service: AxiosInstance = axios.create({
-  baseURL: "http://localhost:1337/api", // 基地址
+  // baseURL: "http://localhost:1337/api", // 基地址
+  baseURL: "http://113.45.56.182:8080/api", // 基地址
   timeout: 10000, // 请求超时时间：10秒
   headers: {
     "Content-Type": "application/json",
