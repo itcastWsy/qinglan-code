@@ -122,8 +122,8 @@ import request from '../../utils/request';
 import { IArticle } from '../../types';
 import { marked } from 'marked';
 
-// 设置marked选项，启用表格支持
-marked.use({
+// 设置marked选项，启用表格和列表支持
+marked.setOptions({
   gfm: true, // 启用GitHub风格Markdown，包括表格支持
   breaks: true, // 支持回车换行
 });
@@ -275,9 +275,15 @@ ${description}
 
 ## 核心概念
 
-- 概念一：这是第一个重要概念的详细解释
-- 概念二：这是第二个重要概念的详细解释
-- 概念三：这是第三个重要概念的详细解释
+* 概念一：这是第一个重要概念的详细解释
+* 概念二：这是第二个重要概念的详细解释
+* 概念三：这是第三个重要概念的详细解释
+
+也可以使用减号作为列表标记：
+
+- 要点一：这是第一个要点
+- 要点二：这是第二个要点
+- 要点三：这是第三个要点
 
 ## 代码示例
 
@@ -433,7 +439,29 @@ onUnmounted(() => {
   padding-left: 1.625em;
 }
 
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
 .prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li::marker {
+  color: #6b7280;
+}
+
+.prose li > p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose li > ul, .prose li > ol {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
