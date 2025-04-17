@@ -37,10 +37,12 @@ export interface IApplication {
 // 技术文章
 export interface IArticle {
   id: number;
+  documentId: string;
   title: string;
   url: string;
   description: string;
   icon: string;
   tags: string[];
   author: string;
+  content?: string;
 }

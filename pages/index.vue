@@ -194,7 +194,7 @@
             </NuxtLink>
           </h3>
           <div class="grid md:grid-cols-3 gap-8">
-            <a v-for="article in articles.slice(0, 6)" :key="article.id" :href="article.url" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
+            <NuxtLink v-for="article in articles.slice(0, 6)" :key="article.id" :to="`/articles/${article.id}`" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition card-3d">
               <div class="flex items-center mb-4">
                 <i :class="article.icon || 'fas fa-file-alt'" class="text-2xl text-gray-800 mr-3 icon-3d"></i>
                 <h4 class="text-xl font-bold">{{ article.title }}</h4>
@@ -204,7 +204,7 @@
                 <span v-for="(tag, index) in article.tags" :key="index" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm tag-3d">{{ tag }}</span>
               </div>
               <p class="text-gray-500 text-sm mt-3 italic">作者：{{ article.author }}</p>
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -270,23 +270,45 @@ const applications = ref<IApplication[]>([]);
 const articles = ref<IArticle[]>([]);
 
 const fetchMembers = async () => {
-  const res = await request.get("/members?sort=createdAt");
-  members.value = res.data;
+  try {
+    const res = await request.get("/members?sort=createdAt");
+    members.value = res.data;
+  } catch (error) {
+    console.error("获取成员失败:", error);
+    // 模拟一些默认数据
+    members.value = [];
+  }
 };
 
 const fetchProducts = async () => {
-  const res = await request.get("/projects?sort=createdAt");
-  projects.value = res.data;
+  try {
+    const res = await request.get("/projects?sort=createdAt");
+    projects.value = res.data;
+  } catch (error) {
+    console.error("获取项目失败:", error);
+    // 模拟一些默认数据
+    projects.value = [];
+  }
 };
 
 const fetchApplications = async () => {
-  const res = await request.get("/applications?sort=createdAt");
-  applications.value = res.data;
+  try {
+    const res = await request.get("/applications?sort=createdAt");
+    applications.value = res.data;
+  } catch (error) {
+    console.error("获取应用失败:", error);
+    // 模拟一些默认数据
+    applications.value = [];
+  }
 };
 
 const fetchArticles = async () => {
-  const res = await request.get("/articles?sort=createdAt");
-  articles.value = res.data;
+  try {
+    const res = await request.get("/articles?sort=createdAt&limit=6");
+    articles.value = res.data;
+  } catch (error) {
+    console.error("获取文章失败:", error);
+  }
 };
 
 onMounted(() => {

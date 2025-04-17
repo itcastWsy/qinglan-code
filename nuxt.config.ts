@@ -24,7 +24,16 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxt/image",
+    "@nuxt/content",
   ],
+
+  content: {
+    // 配置@nuxt/content模块
+    documentDriven: true,
+    highlight: {
+      theme: "github-light",
+    },
+  },
 
   app: {
     baseURL: process.env.NODE_ENV === "production" ? "/qinglan-code/" : "/",

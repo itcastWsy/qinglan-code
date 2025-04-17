@@ -51,11 +51,10 @@
 
         <!-- 文章列表 -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <a 
+          <NuxtLink 
             v-for="article in filteredArticles" 
             :key="article.id" 
-            :href="article.url" 
-            target="_blank" 
+            :to="`/articles/${article.documentId}`" 
             class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition group"
           >
             <div class="flex items-center mb-4">
@@ -78,7 +77,7 @@
                 阅读更多 <i class="fas fa-arrow-right ml-1"></i>
               </div>
             </div>
-          </a>
+          </NuxtLink>
         </div>
 
         <!-- 空状态 -->
@@ -131,7 +130,7 @@ const filteredArticles = computed(() => {
 // 获取文章数据
 const fetchArticles = async () => {
   try {
-    const res = await request.get("/articles?sort=createdAt");
+    const res = await request.get("/articles?sort=createdAt&pagination[pageSize]=12");
     articles.value = res.data;
   } catch (error) {
     console.error("获取文章失败:", error);
