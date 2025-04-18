@@ -94,18 +94,22 @@
       <!-- 右侧目录导航 -->
       <div v-if="tableOfContents.length > 0" class="hidden lg:block fixed right-8 top-1/2 transform -translate-y-1/2 w-64 z-10">
         <div class="bg-white rounded-lg shadow-lg p-5">
-          <h3 class="text-lg font-bold mb-4 text-gray-700">文章目录</h3>
-          <ul class="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
+          <h3 class="text-lg font-bold mb-3 text-gray-700">文章目录</h3>
+          <ul class="space-y-0 max-h-[60vh] overflow-y-auto pr-2">
             <li v-for="(item, index) in tableOfContents" :key="index">
               <a 
                 :href="`#${item.id}`" 
                 class="toc-item text-gray-600 hover:text-blue-600 transition-colors block py-1 border-l-2 pl-3"
                 :class="[
-                  activeHeading === item.id ? 'active-heading border-blue-500 text-blue-600 font-medium bg-blue-50' : 'border-transparent'
+                  activeHeading === item.id ? 'active-heading border-blue-500 text-blue-600 font-medium bg-blue-50' : 'border-transparent',
+                  `heading-level-${item.level}`
                 ]"
                 @click.prevent="scrollToHeading(item.id, $event)"
               >
-                {{ item.text }}
+                <span class="inline-block w-full truncate">
+                  <span v-if="item.level > 1" class="inline-block" :style="`width: ${(item.level - 1) * 8}px`"></span>
+                  <span :class="{'font-bold': item.level === 1, 'font-medium': item.level === 2}">{{ item.text }}</span>
+                </span>
               </a>
             </li>
           </ul>
@@ -144,12 +148,15 @@ const processCodeBlocks = () => {
   const codeBlocks = articleContent.value.querySelectorAll('pre code');
   
   codeBlocks.forEach((codeBlock) => {
+    // 保存原始代码文本用于复制
+    const originalCode = codeBlock.textContent || '';
+    
     // 高亮处理
     hljs.highlightElement(codeBlock as HTMLElement);
     
     // 获取代码行
-    const code = codeBlock.innerHTML;
-    const lines = code.split('\n').filter(line => line.trim() !== '');
+    const htmlCode = codeBlock.innerHTML;
+    const lines = htmlCode.split('\n').filter(line => line.trim() !== '');
     
     // 生成行号
     const lineNumbers = document.createElement('div');
@@ -169,12 +176,47 @@ const processCodeBlocks = () => {
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
     
+    // 创建复制按钮
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-code-button';
+    copyButton.innerHTML = '<i class="fas fa-copy"></i> <span class="copy-text">复制</span>';
+    copyButton.title = '复制代码';
+    
+    // 添加复制功能
+    copyButton.addEventListener('click', () => {
+      // 使用原始代码内容
+      navigator.clipboard.writeText(originalCode)
+        .then(() => {
+          // 复制成功，临时改变按钮外观
+          copyButton.innerHTML = '<i class="fas fa-check"></i> <span class="copy-text">已复制!</span>';
+          copyButton.classList.add('copied');
+          
+          // 2秒后恢复原样
+          setTimeout(() => {
+            copyButton.innerHTML = '<i class="fas fa-copy"></i> <span class="copy-text">复制</span>';
+            copyButton.classList.remove('copied');
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('复制失败:', err);
+          copyButton.innerHTML = '<i class="fas fa-times"></i> <span class="copy-text">复制失败</span>';
+          
+          setTimeout(() => {
+            copyButton.innerHTML = '<i class="fas fa-copy"></i> <span class="copy-text">复制</span>';
+          }, 2000);
+        });
+    });
+    
     // 将原始代码块的父元素（pre标签）包裹在新的容器中
     const preElement = codeBlock.parentElement;
     if (preElement) {
       preElement.parentElement?.insertBefore(wrapper, preElement);
+      
+      // 正确的添加顺序：先行号，再代码块，确保行号在左侧
       wrapper.appendChild(lineNumbers);
       wrapper.appendChild(preElement);
+      // 最后添加复制按钮（它是绝对定位的，添加顺序不重要）
+      wrapper.appendChild(copyButton);
     }
   });
 };
@@ -184,16 +226,16 @@ const articleId = computed(() => route.params.id);
 const article = ref<IArticle | null>(null);
 const loading = ref(true);
 const articleContent = ref<HTMLElement | null>(null);
-const tableOfContents = ref<Array<{ id: string; text: string }>>([]);
+const tableOfContents = ref<Array<{ id: string; text: string; level: number }>>([]);
 const activeHeading = ref<string | null>(null);
 
-// 提取H2标题作为目录项
+// 提取H1、H2、H3标题作为目录项
 const extractTableOfContents = () => {
   if (!articleContent.value) return;
   
-  // 获取所有的h2标题
-  const headings = articleContent.value.querySelectorAll('h2');
-  const tocItems: Array<{ id: string; text: string }> = [];
+  // 获取所有的h1, h2, h3标题
+  const headings = articleContent.value.querySelectorAll('h1, h2, h3');
+  const tocItems: Array<{ id: string; text: string; level: number }> = [];
   
   headings.forEach((heading, index) => {
     // 如果标题没有id，则创建一个
@@ -201,9 +243,13 @@ const extractTableOfContents = () => {
       heading.id = `heading-${index}`;
     }
     
+    // 获取标题级别
+    const level = parseInt(heading.tagName.substring(1));
+    
     tocItems.push({
       id: heading.id,
-      text: heading.textContent || `标题 ${index + 1}`
+      text: heading.textContent || `标题 ${index + 1}`,
+      level: level
     });
   });
   
@@ -255,18 +301,28 @@ const checkActiveHeading = () => {
   // 获取距离视口顶部最近的标题
   const scrollPosition = window.scrollY + 100; // 添加一些偏移量
   
+  // 找到当前视口内的或视口上方最近的标题
+  let currentHeading: HTMLElement | null = null;
+  let minDistance = Number.MAX_SAFE_INTEGER;
+  
   for (const heading of validHeadings) {
-    const offsetTop = heading.offsetTop;
-    if (offsetTop > scrollPosition) {
-      continue;
-    }
+    const offsetTop = heading.getBoundingClientRect().top + window.scrollY;
+    const distance = scrollPosition - offsetTop;
     
-    activeHeading.value = heading.id;
-    return;
+    // 如果标题在视口上方并且距离最小
+    if (distance >= 0 && distance < minDistance) {
+      minDistance = distance;
+      currentHeading = heading;
+    }
   }
   
-  // 如果没有找到，默认选中第一个
-  activeHeading.value = validHeadings[0].id;
+  // 如果找到了当前标题，更新活跃标题
+  if (currentHeading) {
+    activeHeading.value = currentHeading.id;
+  } else if (validHeadings.length > 0) {
+    // 如果没有找到，默认选中第一个
+    activeHeading.value = validHeadings[0].id;
+  }
 };
 
 // 获取文章数据
@@ -551,7 +607,6 @@ onUnmounted(() => {
 /* 文章内容样式 */
 .prose {
   color: #374151;
-  max-width: 65ch;
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -561,10 +616,44 @@ onUnmounted(() => {
   margin: 1.5em 0;
   position: relative;
   border-radius: 0.375rem;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   background-color: #282c34; /* 深色背景 */
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 复制按钮样式 */
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #adbac7;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-code-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+.copy-code-button.copied {
+  background-color: rgba(35, 134, 54, 0.4);
+  color: #9ae6b4;
+}
+
+.copy-code-button .copy-text {
+  margin-left: 4px;
 }
 
 .prose .line-numbers {
@@ -589,15 +678,16 @@ onUnmounted(() => {
 .prose pre {
   background-color: transparent;
   margin: 0;
-  padding: 0;
-  overflow: visible;
+  padding: 1em;
+  overflow-x: auto;
   flex-grow: 1;
+  position: relative;
 }
 
 .prose pre code.hljs {
   display: block;
   overflow-x: auto;
-  padding: 1em;
+  padding: 0;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.875em;
   line-height: 1.5;
@@ -630,6 +720,7 @@ onUnmounted(() => {
 
 .prose h1 {
   font-size: 2.25em;
+  scroll-margin-top: 80px; /* 确保滚动到标题时有足够的上边距 */
 }
 
 .prose h2 {
@@ -639,6 +730,7 @@ onUnmounted(() => {
 
 .prose h3 {
   font-size: 1.5em;
+  scroll-margin-top: 80px; /* 确保滚动到标题时有足够的上边距 */
 }
 
 .prose p {
@@ -753,6 +845,28 @@ onUnmounted(() => {
   transition: all 0.2s ease;
 }
 
+/* 目录级别样式 */
+.heading-level-1 {
+  font-size: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.1rem;
+}
+
+.heading-level-2 {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.heading-level-3 {
+  font-size: 0.85rem;
+  margin-left: 1rem;
+  color: #6b7280;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
 /* 打印样式 */
 @media print {
   .container {
@@ -772,6 +886,16 @@ onUnmounted(() => {
   .bg-gradient-to-r,
   .max-w-4xl > div:last-child {
     display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .copy-code-button .copy-text {
+    display: none;
+  }
+  
+  .copy-code-button {
+    padding: 0.3rem;
   }
 }
 </style> 

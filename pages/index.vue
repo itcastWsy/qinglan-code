@@ -11,12 +11,17 @@
         <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">连接技术，点亮未来</h1>
         <p class="text-xl md:text-2xl mb-8 animate-fade-in-delay">青蓝逐码团队 - 技术改善生活</p>
         <div class="flex justify-center space-x-4">
-          <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition transform hover:scale-105">
-            了解更多
+          <NuxtLink to="/#contact">
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition transform hover:scale-105">
+              了解更多
+            </button>
+          </NuxtLink>
+          <NuxtLink to="/#contact">
+            <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition transform hover:scale-105">
+            加入我们 
           </button>
-          <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition transform hover:scale-105">
-            加入我们
-          </button>
+          </NuxtLink>
+       
         </div>
       </div>
     </section>
@@ -229,7 +234,7 @@
                   <p class="text-lg font-semibold">青蓝逐码</p>
                 </div>
                 <div class="ml-4">
-                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/qinglan-erweima%20(1).jpg?x-oss-credential=LTAI5tPNDZtqtANHBmQFKd3D%2F20250418%2Frg-china-mainland%2Foss%2Faliyun_v4_request&x-oss-date=20250418T000048Z&x-oss-expires=3600&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-signature=46c63fdf5034c6b03d4829ecd8eeb3aea13ce02bbd0d9228c5dcf4627ebb8e57" alt="微信公众号二维码" class="w-24 h-24 rounded-lg shadow-sm">
+                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/qinglan-erweima%20(1).jpg" alt="微信公众号二维码" class="w-24 h-24 rounded-lg shadow-sm">
                   <p class="text-xs text-gray-500 text-center mt-1">扫码关注</p>
                 </div>
               </div>
@@ -242,7 +247,7 @@
                   <p class="text-lg font-semibold">w846903522</p>
                 </div>
                 <div class="ml-4">
-                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/wanshaoweixin.webp?x-oss-credential=LTAI5tPNDZtqtANHBmQFKd3D%2F20250418%2Frg-china-mainland%2Foss%2Faliyun_v4_request&x-oss-date=20250418T000030Z&x-oss-expires=3600&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-signature=273de8957478d342d086746137c7175ba8b21308f314bb4c1f11c2a622e0ce85" alt="个人微信" class="w-24 h-24 rounded-lg shadow-sm">
+                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/wanshaoweixin.webp" alt="个人微信" class="w-24 h-24 rounded-lg shadow-sm">
                   <p class="text-xs text-gray-500 text-center mt-1">扫码关注</p>
                 </div>
               </div>
