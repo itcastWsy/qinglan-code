@@ -57,7 +57,7 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/svg+xml",
-          href: "https://wsy997.obs.cn-east-3.myhuaweicloud.com/pcweb/logo.svg",
+          href: "https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/logo.svg?x-oss-credential=LTAI5tPNDZtqtANHBmQFKd3D%2F20250418%2Frg-china-mainland%2Foss%2Faliyun_v4_request&x-oss-date=20250418T000328Z&x-oss-expires=3600&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-signature=b03549bfe2d07979cdc3d1e193e18da31eb4e1671bd5a36b9911bf6350a92dd6",
         },
         // {
         //   rel: "stylesheet",

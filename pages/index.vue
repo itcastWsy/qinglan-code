@@ -229,7 +229,7 @@
                   <p class="text-lg font-semibold">青蓝逐码</p>
                 </div>
                 <div class="ml-4">
-                  <img src="/assets/images/logo.svg" alt="微信公众号二维码" class="w-24 h-24 rounded-lg shadow-sm">
+                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/qinglan-erweima%20(1).jpg?x-oss-credential=LTAI5tPNDZtqtANHBmQFKd3D%2F20250418%2Frg-china-mainland%2Foss%2Faliyun_v4_request&x-oss-date=20250418T000048Z&x-oss-expires=3600&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-signature=46c63fdf5034c6b03d4829ecd8eeb3aea13ce02bbd0d9228c5dcf4627ebb8e57" alt="微信公众号二维码" class="w-24 h-24 rounded-lg shadow-sm">
                   <p class="text-xs text-gray-500 text-center mt-1">扫码关注</p>
                 </div>
               </div>
@@ -237,9 +237,13 @@
                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                   <i class="fab fa-weixin text-2xl text-blue-600"></i>
                 </div>
-                <div>
+                <div class="flex-1">
                   <p class="text-gray-600">微信</p>
                   <p class="text-lg font-semibold">w846903522</p>
+                </div>
+                <div class="ml-4">
+                  <img src="https://qinglanhome.oss-rg-china-mainland.aliyuncs.com/home/wanshaoweixin.webp?x-oss-credential=LTAI5tPNDZtqtANHBmQFKd3D%2F20250418%2Frg-china-mainland%2Foss%2Faliyun_v4_request&x-oss-date=20250418T000030Z&x-oss-expires=3600&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-signature=273de8957478d342d086746137c7175ba8b21308f314bb4c1f11c2a622e0ce85" alt="个人微信" class="w-24 h-24 rounded-lg shadow-sm">
+                  <p class="text-xs text-gray-500 text-center mt-1">扫码关注</p>
                 </div>
               </div>
               <div class="flex items-center">
